@@ -29,6 +29,7 @@ public class BDAccessToken {
 	 * ExpiresIn 有效时长 
 	 */
 	public Integer expires_in;
+	
 	public String getAccess_token() {
 		return access_token;
 	}
