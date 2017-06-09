@@ -34,6 +34,8 @@ public class LexerAnalysis {
 	public String LexerAnalysis(String text,String accessToken) throws Exception {
 		String url_param = "?access_token="+accessToken;
 		String url = LEXERANALYSIS_URL+url_param;
+		
+// 1.		
 //		HttpUtils httpUtils = new HttpUtils();
 //		Map<String, String> headers = new HashMap<String, String>(); 
 //		Map<String, String> bodys= new HashMap<String, String>();
@@ -42,6 +44,8 @@ public class LexerAnalysis {
 //		headers.put("Content-Type","application/json");
 //		HttpResponse response = httpUtils.doPostBD(url,headers,bodys);
 //		String data = EntityUtils.toString(response.getEntity());
+		
+//2.	
 		HttpUtil httpUtil = new HttpUtil();
 		String param = text;
 		String data = httpUtil.post(url, param);

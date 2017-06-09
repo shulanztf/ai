@@ -242,11 +242,6 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-		<dependency>
-			<groupId>it.sauronsoftware</groupId>
-			<artifactId>jave</artifactId>
-			<version>1.0.2</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
