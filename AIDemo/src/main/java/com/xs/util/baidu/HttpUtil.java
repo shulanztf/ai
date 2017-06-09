@@ -26,8 +26,10 @@ public class HttpUtil {
     	System.out.println("打开链接，开始发送请求"+new Date().getTime()/1000);
         connection.setRequestMethod("POST");
         // 设置通用的请求属性
-        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        //connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("Connection", "Keep-Alive");
+        connection.setRequestProperty("Content-Type","application/json");
         connection.setUseCaches(false);
         connection.setDoOutput(true);
         connection.setDoInput(true);

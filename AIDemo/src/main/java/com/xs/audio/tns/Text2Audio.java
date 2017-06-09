@@ -15,7 +15,7 @@ import com.xs.util.baidu.RandomStringGenerator;
 public class Text2Audio {
 	public String TEXT2AUDIO_URL = "http://tsn.baidu.com/text2audio";
 	public static void main(String[] args) throws Exception {
-		String tex = "欢迎使用小帅 语音合成 测试代码";
+		String tex = "Welcome to china";
 		Text2Audio audio = new Text2Audio();
 		audio.text2Audio(tex, APIContants.VOICE_TOKEN, "1", RandomStringGenerator.getRandomStringByLength(60));
 		

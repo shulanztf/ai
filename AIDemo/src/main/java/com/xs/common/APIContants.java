@@ -30,4 +30,12 @@ public class APIContants {
 	//百度语音应用sercetkey
 	public static final String VOICE_SERCET_KEY = "SsjgHrrSGaOCOIBrfyxgglTXinLwKYVF";
 	public static final String VOICE_TOKEN = "24.abc848fabd207417ad4e09fc6137faa0.2592000.1498360048.282335-9695383";
+
+	//百度语音应用id
+	public static final String NLP_APPID = "9748117";
+	//百度语音应用apikey
+	public static final String NLP_API_KEY = "bdKTyS2sFwKzYaEbxNKwmLpM";
+	//百度语音应用sercetkey
+	public static final String NLP_SERCET_KEY = "PPYv4XoBTluaV1HX16B5TFLPW8GUhNyw";
+	public static final String NLP_TOKEN = "24.96286c48d32a49cbe4e36bf384d1e4dc.2592000.1499587335.282335-9748117";
 }
