@@ -19,7 +19,7 @@ import com.xs.util.baidu.HttpUtil;
 /**
  * 百度通用文字OCR识别JavaDemo(非官方)
  * @author 小帅丶
- * @date  2017-5-26上午11:17:32
+ * @date  2017年6月13日16:04:12
  */
 public class Img2TextBasic {
 	
