@@ -4,7 +4,6 @@ package com.xs.ocr;
 
 import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import net.sf.json.JSONObject;
