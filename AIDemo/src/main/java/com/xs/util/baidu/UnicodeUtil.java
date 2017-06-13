@@ -84,13 +84,27 @@ public class UnicodeUtil {
 		return outBuffer.toString();
 
 	}
+	/**
+	 * UTF-8转GBK
+	 * @param str
+	 * @return String
+	 * @throws Exception
+	 */
 	public static String getGbk(String str) throws Exception{
 		String t = str;  
 		String utf8 = new String(t.getBytes( "UTF-8"));  
+		System.out.println(utf8+"utf8");
 		String unicode = new String(utf8.getBytes(),"UTF-8");   
+		System.out.println(unicode+"unicode");
 		String gbk = new String(unicode.getBytes("GBK"));  
+		System.out.println(gbk+"gbk");
 		return gbk;
 	}
+	/**
+	 * Unicode转GBK
+	 * @param dataStr
+	 * @return String
+	 */
 	public static String Unicode2GBK(String dataStr) {  
         int index = 0;  
         StringBuffer buffer = new StringBuffer();  
@@ -111,40 +125,31 @@ public class UnicodeUtil {
         }  
         return buffer.toString();  
     }  
+	/**
+	 * 获取字符串的编码格式
+	 * @param str
+	 * @return
+	 */
     public static String getEncoding(String str) {        
-        String encode = "GB2312";        
-       try {        
-           if (str.equals(new String(str.getBytes(encode), encode))) {        
-                String s = encode;        
-               return s;        
-            }        
-        } catch (Exception exception) {        
-        }        
-        encode = "ISO-8859-1";        
-       try {        
-           if (str.equals(new String(str.getBytes(encode), encode))) {        
-                String s1 = encode;        
-               return s1;        
-            }        
-        } catch (Exception exception1) {        
-        }        
-        encode = "UTF-8";        
-       try {        
-           if (str.equals(new String(str.getBytes(encode), encode))) {        
-                String s2 = encode;        
-               return s2;        
-            }        
-        } catch (Exception exception2) {        
-        }        
-        encode = "GBK";        
-       try {        
-           if (str.equals(new String(str.getBytes(encode), encode))) {        
-                String s3 = encode;        
-               return s3;        
-            }        
-        } catch (Exception exception3) {        
-        }        
-       return "";        
+    	String encode[] = new String[]{  
+                "UTF-8",  
+                "ISO-8859-1",  
+                "GB2312",  
+                "GBK",  
+                "GB18030",  
+                "Big5",  
+                "Unicode",  
+                "ASCII"  
+        };  
+        for (int i = 0; i < encode.length; i++){  
+            try {  
+                if (str.equals(new String(str.getBytes(encode[i]), encode[i]))) {  
+                    return encode[i];  
+                }  
+            } catch (Exception ex) {  
+            }  
+        }  
+        return "";     
     }    
 	 public static String utf82gbk(String utf) {  
 	        String l_temp = utf8ToUnicode(utf);  
@@ -176,4 +181,9 @@ public class UnicodeUtil {
         }  
         return sb.toString();  
     }  
+    public static void main(String[] args) throws Exception {
+    	String  a = getGbk("你好");
+    	System.out.println(getEncoding(a));
+//    	System.out.println(getEncoding(new String("你好".getBytes(),"GBK")));
+	}
 }

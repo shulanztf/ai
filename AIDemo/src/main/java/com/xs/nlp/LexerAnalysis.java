@@ -22,7 +22,7 @@ public class LexerAnalysis {
 	public String LEXERANALYSIS_URL = "https://aip.baidubce.com/rpc/2.0/nlp/v1/lexer";
 	public static void main(String[] args) throws Exception {
 		LexerAnalysis analysis = new  LexerAnalysis();
-		System.out.println(analysis.LexerAnalysis("北京聚利科技股份公司", APIContants.NLP_TOKEN));
+		System.out.println(analysis.getLexerAnalysis("北京你好有限公司", APIContants.NLP_TOKEN));
 	}
 	/**
 	 * 词法分析接口
@@ -31,7 +31,7 @@ public class LexerAnalysis {
 	 * @return data
 	 * @throws Exception
 	 */
-	public String LexerAnalysis(String text,String accessToken) throws Exception {
+	public String getLexerAnalysis(String text,String accessToken) throws Exception {
 		String url_param = "?access_token="+accessToken;
 		String url = LEXERANALYSIS_URL+url_param;
 		
@@ -47,7 +47,8 @@ public class LexerAnalysis {
 		
 //2.	
 		HttpUtil httpUtil = new HttpUtil();
-		String param = text;
+		String param = UnicodeUtil.getGbk(text);
+		System.out.println(param);
 		String data = httpUtil.post(url, param);
 		return data;
 	}
