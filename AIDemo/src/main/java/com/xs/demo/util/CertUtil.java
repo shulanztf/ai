@@ -42,7 +42,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.security.auth.x500.X500Principal;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.x509.X509V1CertificateGenerator;
+import org.bouncycastle.x509.X509V3CertificateGenerator;
 
 import com.xiaoleilu.hutool.date.DateUtil;
 import com.xiaoleilu.hutool.lang.Base64;
@@ -80,15 +80,15 @@ public class CertUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public X509Certificate generateV1Certificate(KeyPair pair, Date bdate,
+	public X509Certificate generateV3Certificate(KeyPair pair, Date bdate,
 			Date edate, X500Principal info) throws Exception {
 		Security.addProvider(new BouncyCastleProvider());
-		X509V1CertificateGenerator certGen = new X509V1CertificateGenerator();
+		X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
 		certGen.setSerialNumber(BigInteger.valueOf(System.currentTimeMillis()));
 		certGen.setIssuerDN(info);
 		certGen.setNotBefore(bdate);
 		certGen.setNotAfter(edate);
-		certGen.setSubjectDN(new X500Principal("CN=Test Certificate"));
+		certGen.setSubjectDN(info);
 		certGen.setPublicKey(pair.getPublic());
 		certGen.setSignatureAlgorithm("SHA1withRSA");
 		return certGen.generateX509Certificate(pair.getPrivate(), "BC");
@@ -118,7 +118,7 @@ public class CertUtil {
 		String certaddress = address + "/" + new Date().getTime() / 1000
 				+ ".cer";
 		KeyPair kp = getKeyPair(algorithm, keysize, address);
-		X509Certificate cert = generateV1Certificate(kp, bdate, edate, info);
+		X509Certificate cert = generateV3Certificate(kp, bdate, edate, info);
 		cert.checkValidity(new Date());
 		cert.verify(cert.getPublicKey());
 		FileOutputStream outputStream = new FileOutputStream(certaddress);
