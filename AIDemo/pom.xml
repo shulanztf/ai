@@ -250,8 +250,8 @@
 	<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16 -->
 	<dependency>
 	    <groupId>org.bouncycastle</groupId>
-	    <artifactId>bcprov-jdk15on</artifactId>
-	    <version>1.50</version>
+	    <artifactId>bcprov-jdk16</artifactId>
+	    <version>1.38</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on -->
 	<dependency>
