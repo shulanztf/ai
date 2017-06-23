@@ -1,6 +1,7 @@
 package com.xs.demo.util;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,6 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Security;
+import java.security.Signature;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.security.interfaces.RSAPublicKey;
@@ -128,6 +130,34 @@ public class Cert {
 		} 
 		return certStr.toString();
 	}
+	/**
+	 * 数字验签
+	 * @param data 待签名的数据
+	 * @param strSignData 签名数据和用户证书 格式 sign:base64(cert) 英文冒号
+	 * @return boolean
+	 */
+	public static boolean ESverify(String data,String strSignData){
+		boolean bverfiy = false;
+		try {
+			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+			String signData[] = strSignData.split(":");
+			String sign = signData[0];
+			String cert = signData[1];
+			String certx509 = "-----BEGIN CERTIFICATE-----\n"+cert+"\n-----END CERTIFICATE-----\n";
+			CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(certx509.getBytes());
+			X509Certificate certificate = (X509Certificate) certificateFactory.generateCertificate(byteArrayInputStream);
+			PublicKey pubKey = keyFactory.generatePublic(new X509EncodedKeySpec(certificate.getPublicKey().getEncoded()));
+			Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
+			signature.initVerify(pubKey);
+			signature.update(data.getBytes());
+			bverfiy = signature.verify(Base64.decode(sign));
+			return bverfiy;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bverfiy;
+	} 
 	/**
 	 * 保存申请的证书到指定盘符
 	 * @param cert
