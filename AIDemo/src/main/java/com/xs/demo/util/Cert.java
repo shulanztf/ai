@@ -159,6 +159,36 @@ public class Cert {
 		return bverfiy;
 	} 
 	/**
+	 * 数据加密 <br/>采用数字信封方式<br/>
+	 * @param strInCert 指定加密的证书base64编码<br/>
+	 * @param strInData 待加密的数据 <br/>
+	 * @return String
+	 * @throws Exception 
+	 */
+	public static String ESEnvelopeEnc(String strInCert,String strInData) throws Exception{
+		try {
+			//转换为x509证书对象。读取公钥
+			String certx509 = "-----BEGIN CERTIFICATE-----\n"+strInCert+"\n-----END CERTIFICATE-----\n";
+			CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(certx509.getBytes());
+			X509Certificate certificate = (X509Certificate) certificateFactory.generateCertificate(byteArrayInputStream);
+			RSAPublicKey rsaPublicKey = (RSAPublicKey) certificate.getPublicKey();
+			//3des密钥
+			String des3pwd = DES3Util.genRandomNum(24);
+			//先使用3des进行数据加密
+			byte [] encstr = DES3Util.encrypt3DES(des3pwd.getBytes(), strInData.getBytes());
+			//使用公钥对3des加密后的数据加密
+			byte [] certenc = CertUtil.encrypt(rsaPublicKey, encstr);
+			//拼接格式
+			String result = Base64.encode(certenc)+":"+Base64.encode(des3pwd.getBytes());
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	/**
 	 * 保存申请的证书到指定盘符
 	 * @param cert
 	 * @throws Exception
