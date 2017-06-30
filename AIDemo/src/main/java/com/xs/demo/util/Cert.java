@@ -27,6 +27,8 @@ import java.util.Date;
 
 import javax.security.auth.x500.X500Principal;
 
+import org.bouncycastle.asn1.x509.Extension;
+import org.bouncycastle.asn1.x509.SubjectKeyIdentifier;
 import org.bouncycastle.asn1.x509.X509Extensions;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.x509.X509V3CertificateGenerator;
@@ -96,9 +98,15 @@ public class Cert {
 		//添加主体密钥(公钥)
 		certGen.addExtension(X509Extensions.SubjectKeyIdentifier, false,
 					new SubjectKeyIdentifierStructure(pubKey));
-	   //添加颁发者密钥(公钥)
+		//因为版本的原因。如果不使用JDK16ON 则使用下面的扩展信息方法
+//		certGen.addExtension(Extension.subjectKeyIdentifier, false,
+//				new SubjectKeyIdentifier(pubKey.getEncoded()));
+//	   //添加颁发者密钥(公钥)
 		certGen.addExtension(X509Extensions.AuthorityKeyIdentifier, false,
 				new AuthorityKeyIdentifierStructure(rootCA.getPublicKey()));
+		//因为版本的原因。如果不使用JDK16ON 则使用下面的扩展信息方法
+//		certGen.addExtension(Extension.authorityKeyIdentifier, false,
+//				new AuthorityKeyIdentifierStructure(rootCA.getPublicKey()));
 		//生成X509证书
 		subCert = certGen.generate(privateKey,"BC");
 		//拼接成BASE64编码
