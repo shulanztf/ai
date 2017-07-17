@@ -20,6 +20,7 @@ public class HttpUtil {
 
     public static String post(String requestUrl, String accessToken, String params) throws Exception {
         String generalUrl = requestUrl + "?access_token=" + accessToken;
+        System.out.println("发送的连接为:"+generalUrl);
         URL url = new URL(generalUrl);
         // 打开和URL之间的连接
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -27,6 +28,51 @@ public class HttpUtil {
         connection.setRequestMethod("POST");
         // 设置通用的请求属性
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        connection.setRequestProperty("Connection", "Keep-Alive");
+        connection.setUseCaches(false);
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+
+        // 得到请求的输出流对象
+        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+        out.writeBytes(params);
+        out.flush();
+        out.close();
+
+        // 建立实际的连接
+        connection.connect();
+        // 获取所有响应头字段
+        Map<String, List<String>> headers = connection.getHeaderFields();
+        // 遍历所有的响应头字段
+        for (String key : headers.keySet()) {
+            System.out.println(key + "--->" + headers.get(key));
+        }
+        // 定义 BufferedReader输入流来读取URL的响应
+        BufferedReader in = null;
+        if (requestUrl.contains("nlp"))
+            in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "GBK"));
+        else
+            in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+        String result = "";
+        String getLine;
+        while ((getLine = in.readLine()) != null) {
+            result += getLine;
+        }
+        in.close();
+        System.out.println("请求结束"+new Date().getTime()/1000);
+        System.out.println("result:" + result);
+        return result;
+    }
+    public static String postUnit(String requestUrl, String accessToken, String params) throws Exception {
+        String generalUrl = requestUrl + "?access_token=" + accessToken;
+        System.out.println("发送的连接为:"+generalUrl);
+        URL url = new URL(generalUrl);
+        // 打开和URL之间的连接
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	System.out.println("打开链接，开始发送请求"+new Date().getTime()/1000);
+        connection.setRequestMethod("POST");
+        // 设置通用的请求属性
+        connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("Connection", "Keep-Alive");
         connection.setUseCaches(false);
         connection.setDoOutput(true);
@@ -114,6 +160,58 @@ public class HttpUtil {
         System.out.println("MP3文件保存目录:" + filePath);
         return filePath;
     }
+    public static String postTest(String requestUrl,String params) throws Exception {
+    	String workspace = System.getProperty("user.home");
+    	String path = workspace+"/text2audio/";
+    	try {
+			if (!(new File(path).isDirectory())) {
+				new File(path).mkdir();
+			}
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+    	String filePath = path+"VOICE"+new Date().getTime()/1000+".apk";
+        String generalUrl = requestUrl;
+        URL url = new URL(generalUrl);
+        // 打开和URL之间的连接
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    	System.out.println("打开链接，开始发送请求"+new Date().getTime()/1000);
+        connection.setRequestMethod("GET");
+        // 设置通用的请求属性
+        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        connection.setRequestProperty("Connection", "Keep-Alive");
+        connection.setUseCaches(false);
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+
+        // 得到请求的输出流对象
+        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+        out.writeBytes(params);
+        out.flush();
+        out.close();
+
+        // 建立实际的连接
+        connection.connect();
+        // 获取所有响应头字段
+        Map<String, List<String>> headers = connection.getHeaderFields();
+        // 遍历所有的响应头字段
+        for (String key : headers.keySet()) {
+            System.out.println(key + "--->" + headers.get(key));
+        }
+        // 定义 BufferedReader输入流来读取URL的响应
+        InputStream inputStream = connection.getInputStream();
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        FileOutputStream outputStream = new FileOutputStream(filePath);
+        byte[] buffer = new byte[1024];
+        int len = -1;
+        while ((len=inputStream.read(buffer))!=-1) {
+        	outputStream.write(buffer,0,len);
+		}
+        outputStream.close();
+        System.out.println("请求结束"+new Date().getTime()/1000);
+        System.out.println("MP3文件保存目录:" + filePath);
+        return filePath;
+    }
     public static String post(String requestUrl,String params) throws Exception {
         String generalUrl = requestUrl;
         URL url = new URL(generalUrl);
@@ -157,3 +255,4 @@ public class HttpUtil {
         return result;
     }
 }
+
