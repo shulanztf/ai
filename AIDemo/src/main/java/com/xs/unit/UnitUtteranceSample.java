@@ -17,12 +17,13 @@ public class UnitUtteranceSample {
 	
 	public static String UNITUTTERANCE_URL = "https://aip.baidubce.com/rpc/2.0/solution/v1/unit_utterance";
 	public static void main(String[] args) throws Exception {
-		String scene_id = "5687";
+		//你自己的场景ID
+		Integer scene_id = 123456;
 		String query = "好看的科幻片";
 		String session_id = "";
 		HttpUtil httpUtil = new HttpUtil();
 		com.xs.pojo.unit.UnitUtterance unitUtterance = new com.xs.pojo.unit.UnitUtterance();
-		unitUtterance.setScene_id(5687);
+		unitUtterance.setScene_id(scene_id);
 		unitUtterance.setSession_id("");
 		unitUtterance.setQuery(URLEncoder.encode(query, "utf-8"));
 		JSONObject paramsObject = JSONObject.fromObject(unitUtterance);
