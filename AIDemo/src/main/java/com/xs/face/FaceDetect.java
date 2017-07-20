@@ -7,6 +7,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 
 import com.xs.common.APIContants;
+import com.xs.pojo.BDAccessToken;
+import com.xs.util.baidu.AIUtil;
 import com.xs.util.baidu.Base64Util;
 import com.xs.util.baidu.FileUtil;
 import com.xs.util.baidu.HttpUtils;
@@ -29,7 +31,10 @@ public class FaceDetect {
 	public static String FACE_DETECT_URL="https://aip.baidubce.com/rest/2.0/face/v1/detect?access_token=ACCESS_TOKEN";
 	
 	public static void main(String[] args) throws Exception {
-		String url = FACE_DETECT_URL.replace("ACCESS_TOKEN",APIContants.TOKEN);
+		AIUtil aiUtil = new AIUtil();
+		//得到AccessToken
+		BDAccessToken accessToken = aiUtil.getAccessToken("自己的APIKEY", "自己的SercetKey");
+		String url = FACE_DETECT_URL.replace("ACCESS_TOKEN",accessToken.getAccess_token());
         String filePath ="G:/test.jpg";
 		System.out.println("返回的数据:"+faceDetect(url,filePath,"1","qualities"));
 	}
