@@ -51,7 +51,7 @@ public class Accurate2Text {
 	            		+"&detect_direction="+detect_direction
 	            		+"&vertexes_location="+vertexes_location
 	            		+"&probability="+probability;
-	            result = HttpUtil.post(ACCURATE_URL,APIContants.OCR_TOKEN, params);
+	            result = HttpUtil.post(ACCURATE_URL,"替换成自己的accestoken", params);
 	            //得到的结果转JSON
 	    		JSONObject jsonObject = JSONObject.fromObject(result);
 	    		System.out.println(jsonObject);
@@ -73,7 +73,7 @@ public class Accurate2Text {
 	            String imgStr = Base64Util.encode(imgData);
 	           //简单识别图片上的文字
 	            String params = URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(imgStr, "UTF-8");
-	            result = HttpUtil.post(ACCURATE_URL,APIContants.OCR_TOKEN, params);
+	            result = HttpUtil.post(ACCURATE_URL,"替换成自己的accestoken", params);
 	            //得到的结果转JSON
 	    		JSONObject jsonObject = JSONObject.fromObject(result);
 	    		System.out.println(jsonObject);
