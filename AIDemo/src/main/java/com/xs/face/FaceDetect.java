@@ -6,8 +6,12 @@ import java.util.Map;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.xs.common.APIContants;
 import com.xs.pojo.BDAccessToken;
+import com.xs.pojo.face.FaceDetectBean;
+import com.xs.pojo.face.FaceDetectBean;
 import com.xs.util.baidu.AIUtil;
 import com.xs.util.baidu.Base64Util;
 import com.xs.util.baidu.FileUtil;
@@ -33,10 +37,14 @@ public class FaceDetect {
 	public static void main(String[] args) throws Exception {
 		AIUtil aiUtil = new AIUtil();
 		//得到AccessToken
-		BDAccessToken accessToken = aiUtil.getAccessToken("自己的APIKEY", "自己的SercetKey");
+		BDAccessToken accessToken = aiUtil.getAccessToken("", "");
 		String url = FACE_DETECT_URL.replace("ACCESS_TOKEN",accessToken.getAccess_token());
-        String filePath ="G:/test.jpg";
-		System.out.println("返回的数据:"+faceDetect(url,filePath,"1","qualities"));
+        String filePath ="G:/test2.jpg";
+		String result = faceDetect(url,filePath,"1","age,beauty,expression,faceshape,gender,glasses,landmark,race,qualities");
+		System.out.println(result);
+		JSON json = JSON.parseObject(result);
+		FaceDetectBean bean = JSONObject.toJavaObject(json, FaceDetectBean.class);
+		System.out.println("美丑打分:"+bean.getResult().get(0).getBeauty());
 	}
 	/**
 	 * 所有参数人脸检测
