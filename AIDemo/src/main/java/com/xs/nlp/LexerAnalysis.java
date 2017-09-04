@@ -1,11 +1,13 @@
 package com.xs.nlp;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 
+import com.xiaoleilu.hutool.lang.Base64;
 import com.xs.common.APIContants;
 import com.xs.util.baidu.HttpUtil;
 import com.xs.util.baidu.HttpUtils;
@@ -22,7 +24,7 @@ public class LexerAnalysis {
 	public String LEXERANALYSIS_URL = "https://aip.baidubce.com/rpc/2.0/nlp/v1/lexer";
 	public static void main(String[] args) throws Exception {
 		LexerAnalysis analysis = new  LexerAnalysis();
-		System.out.println(analysis.getLexerAnalysis("北京你好有限公司", APIContants.NLP_TOKEN));
+		System.out.println(analysis.getLexerAnalysis("百度是一家互联网公司", APIContants.NLP_TOKEN));
 	}
 	/**
 	 * 词法分析接口
@@ -33,23 +35,11 @@ public class LexerAnalysis {
 	 */
 	public String getLexerAnalysis(String text,String accessToken) throws Exception {
 		String url_param = "?access_token="+accessToken;
-		String url = LEXERANALYSIS_URL+url_param;
-		
-// 1.		
-//		HttpUtils httpUtils = new HttpUtils();
-//		Map<String, String> headers = new HashMap<String, String>(); 
-//		Map<String, String> bodys= new HashMap<String, String>();
-//		bodys.put("text", text);
-//		headers.put("Content-Encoding", "GBK");
-//		headers.put("Content-Type","application/json");
-//		HttpResponse response = httpUtils.doPostBD(url,headers,bodys);
-//		String data = EntityUtils.toString(response.getEntity());
-		
-//2.	
+		String url = LEXERANALYSIS_URL+url_param;	
 		HttpUtil httpUtil = new HttpUtil();
-		String param = UnicodeUtil.getGbk(text);
-		System.out.println(param);
-		String data = httpUtil.post(url, param);
+		String param = "{\"text\":\""+text+"\"}";
+		String paramGBK = URLEncoder.encode(param, "GBK");
+		String data = httpUtil.postNLP(url, param);
 		return data;
 	}
 }
