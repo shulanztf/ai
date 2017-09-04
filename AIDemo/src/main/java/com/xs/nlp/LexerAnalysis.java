@@ -38,7 +38,6 @@ public class LexerAnalysis {
 		String url = LEXERANALYSIS_URL+url_param;	
 		HttpUtil httpUtil = new HttpUtil();
 		String param = "{\"text\":\""+text+"\"}";
-		String paramGBK = URLEncoder.encode(param, "GBK");
 		String data = httpUtil.postNLP(url, param);
 		return data;
 	}
