@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Dish {
 
-    private int log_id;
+    private Long log_id;
     private int result_num;
     private List<Result> result;
-	public int getLog_id() {
+	public Long getLog_id() {
 		return log_id;
 	}
-	public void setLog_id(int log_id) {
+	public void setLog_id(Long log_id) {
 		this.log_id = log_id;
 	}
 	public int getResult_num() {
