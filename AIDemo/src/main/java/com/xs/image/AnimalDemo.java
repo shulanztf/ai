@@ -18,10 +18,10 @@ import com.xs.util.baidu.HttpUtil;
 public class AnimalDemo {
 	public static void main(String[] args) throws Exception {
 		//返回字符串
-//		String result = getAnimalResult("G:/animal.jpg", "24.509012e6b7fd242cff7557c13dc436de.2592000.1512873097.282335-10131029");
+//		String result = getAnimalResult("图片路径", "自己应用apikey&sercetkey生成的AccessToken");
 //		System.out.println(result);
 		//返回java对象
-		Animal plant = getAnimalBean("G:/animal.jpg", "24.509012e6b7fd242cff7557c13dc436de.2592000.1512873097.282335-10131029");
+		Animal plant = getAnimalBean("图片路径", "自己应用apikey&sercetkey生成的AccessToken");
 		System.out.println(plant.getResult().get(0).getName());
 	}
 	/**
