@@ -19,8 +19,8 @@ public class LogoDemo {
 //		String result = getLogoResult("图片路径", "自己应用apikey&sercetkey生成的AccessToken");
 //		System.out.println(result);
 		//返回java对象
-//		Logo logo = getLogoBean("图片路径", "自己应用apikey&sercetkey生成的AccessToken");
-//		System.out.println(logo.getResult().get(0).getName());
+		Logo logo = getLogoBean("G:car.jpg", "24.509012e6b7fd242cff7557c13dc436de.2592000.1512873097.282335-10131029");
+		System.out.println(logo.getResult().get(0).getName());
 	}
 	/**
 	 * LOGO识别Demo

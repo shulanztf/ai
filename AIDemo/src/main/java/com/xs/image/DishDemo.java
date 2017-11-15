@@ -17,7 +17,8 @@ public class DishDemo {
 		//返回字符串
 		//getDishBean("图片本地路径", "用户自己的token");
 		//返回java对象
-		Dish dish =getDishBean("图片本地路径", "用户自己的token");
+		Dish dish =getDishBean("G:car.jpg", "24.509012e6b7fd242cff7557c13dc436de.2592000.1512873097.282335-10131029");
+		System.out.println(dish.getLog_id());
 	}
 	/**
 	 * 菜品识别Demo
