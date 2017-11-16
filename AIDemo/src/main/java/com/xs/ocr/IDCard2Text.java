@@ -2,14 +2,18 @@ package com.xs.ocr;
 
 import java.net.URLEncoder;
 
-import com.alibaba.fastjson.JSON;
-import com.xs.common.image.ImageAPI;
-import com.xs.pojo.image.Animal;
 import com.xs.util.baidu.Base64Util;
 import com.xs.util.baidu.FileUtil;
 import com.xs.util.baidu.HttpUtil;
-
+/**
+ * 身份证识别示例Demo Java-API方式
+ * @author 小帅丶
+ * @date 2017年11月16日
+ */
 public class IDCard2Text {
+	/**
+	 * 身份证识别接口API
+	 */
 	public static String IDCARD_URL ="https://aip.baidubce.com/rest/2.0/ocr/v1/idcard";
 	public static void main(String[] args) throws Exception {
 		//返回字符串
