@@ -7,3 +7,4 @@
 #百度大脑接入官网文档：http://ai.baidu.com/docs#/Begin/top
 ![小程序专属二维码](https://www.xsshome.cn/xcx.jpg "小程序专属二维码")
 ![小程序截图](https://www.xsshome.cn/index.png "小程序截图")
+![首页](https://gitee.com/uploads/images/2017/1117/091114_94ae7c1a_131538.png "xcx.png")
