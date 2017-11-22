@@ -11,7 +11,6 @@ import com.xs.tencent.TencentAPI;
 import com.xs.tencent.sign.TencentAISign;
 import com.xs.util.baidu.Base64Util;
 import com.xs.util.baidu.FileUtil;
-import com.xs.util.baidu.HttpUtils;
 /**
  * 腾讯AI人脸检测示例Demo
  * @author 小帅
