@@ -23,16 +23,20 @@ public class TencentAISign {
 		return appSignBaseAI4FaceDetect(appId,nonce_str,image,mode);
 	}
 	/**
-	 * 计算SIGN
+	 * 计算SIGN 人脸检测
 	 * @param appId 控制台获取
 	 * @param nonce_str 请求随机字符串，用于保证签名不可预测 
 	 * @return
 	 * @throws Exception
 	 */
-	private static String appSignBaseAI4FaceDetect(Integer appId,
+	public static String appSignBaseAI4FaceDetect(Integer appId,
 			String nonce_str,String image,Integer mode) throws Exception {
 		String time_stamp = System.currentTimeMillis()/1000+"";    
-		String plain_text = "app_id=" + URLEncoder.encode(appId.toString(),"UTF-8") + "&image=" + URLEncoder.encode(image,"UTF-8") +"&mode=" + URLEncoder.encode(mode.toString(),"UTF-8") +"&nonce_str=" + URLEncoder.encode(nonce_str,"UTF-8") + "&time_stamp=" + URLEncoder.encode(time_stamp,"UTF-8");
+		String plain_text = "app_id="+ URLEncoder.encode(appId.toString(), "UTF-8")
+				+ "&image="+ URLEncoder.encode(image, "UTF-8") 
+				+ "&mode="+ URLEncoder.encode(mode.toString(), "UTF-8") 
+				+ "&nonce_str="+ URLEncoder.encode(nonce_str, "UTF-8") 
+				+ "&time_stamp="+ URLEncoder.encode(time_stamp, "UTF-8");
         System.out.println(plain_text);
         String plain_text_encode = plain_text+"&app_key="+TencentAPI.APP_KEY_AI;
         System.out.println(plain_text_encode);
@@ -40,7 +44,53 @@ public class TencentAISign {
 		return sign;
 	}
 	/**
-	 * 
+	 * 计算SIGN 人脸美妆ptu
+	 * @param appId 控制台获取
+	 * @param nonce_str 请求随机字符串，用于保证签名不可预测 
+	 * @param image 图片的base64小于500kb
+	 * @param cosmetic 美妆编码
+	 * @return
+	 * @throws Exception
+	 */
+	public static String appSignBaseAI4FaceCosmetic(Integer appId,
+			String nonce_str,String image,Integer cosmetic) throws Exception {
+		String time_stamp = System.currentTimeMillis()/1000+"";    
+		String plain_text = "app_id="+ URLEncoder.encode(appId.toString(), "UTF-8") 
+				+ "&cosmetic="+ URLEncoder.encode(cosmetic.toString(), "UTF-8") 
+				+ "&image=" + URLEncoder.encode(image, "UTF-8")
+				+ "&nonce_str=" + URLEncoder.encode(nonce_str, "UTF-8")
+				+ "&time_stamp=" + URLEncoder.encode(time_stamp, "UTF-8");
+        System.out.println(plain_text);
+        String plain_text_encode = plain_text+"&app_key="+TencentAPI.APP_KEY_AI;
+        System.out.println(plain_text_encode);
+        String sign = MD5.getMD5(plain_text_encode);
+		return sign;
+	}
+	/**
+	 * 计算SIGN 人脸变装ptu
+	 * @param appId 控制台获取
+	 * @param nonce_str 请求随机字符串，用于保证签名不可预测 
+	 * @param image 图片的base64小于500kb
+	 * @param time_stamp 时间戳
+	 * @param decoration 变妆编码
+	 * @return
+	 * @throws Exception
+	 */
+	public static String appSignBaseAI4FaceDecoration(Integer appId,
+			String nonce_str,String image,String time_stamp, Integer decoration) throws Exception {
+		String plain_text = "app_id="+ URLEncoder.encode(appId.toString(), "UTF-8") 
+				+ "&decoration="+ URLEncoder.encode(decoration.toString(), "UTF-8") 
+				+ "&image=" + URLEncoder.encode(image, "UTF-8")
+				+ "&nonce_str=" + URLEncoder.encode(nonce_str, "UTF-8")
+				+ "&time_stamp=" + URLEncoder.encode(time_stamp, "UTF-8");
+        System.out.println(plain_text);
+        String plain_text_encode = plain_text+"&app_key="+TencentAPI.APP_KEY_AI;
+        System.out.println(plain_text_encode);
+        String sign = MD5.getMD5(plain_text_encode);
+		return sign;
+	}
+	/**
+	 * DECORATION
 	 * @param length 表示生成字符串的长度  
 	 * @return
 	 */
