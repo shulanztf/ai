@@ -12,7 +12,7 @@ import com.xs.tencent.TencentAPI;
 import com.xs.tencent.sign.TencentAISign;
 import com.xs.util.baidu.Base64Util;
 import com.xs.util.baidu.FileUtil;
-
+//人脸变装示例代码
 public class FaceDecoration {
 	public static void main(String[] args) throws Exception {
 		// 时间戳
@@ -36,5 +36,6 @@ public class FaceDecoration {
 		bodys.put("decoration", "8");
 		HttpResponse responseBD = HttpsUtil4Tencent.doPostTencentAI(TencentAPI.FACE_DECORATION, headers, bodys);
 		System.out.println(EntityUtils.toString(responseBD.getEntity()));
+		//返回的image进行处理后 首加 data:image/jpg;base64,即可
 	}
 }
