@@ -104,4 +104,44 @@ public class TencentAISign {
 	    }     
 	    return sb.toString();     
 	 }
+	/**
+	 * 身份证识别SIGN计算方法
+	 * @param appIdAi 控制台获取
+	 * @param nonce_str 请求随机字符串，用于保证签名不可预测 
+	 * @param image 图片base64内容
+	 * @param time_stamp 
+	 * @param card_type 身份证图片类型，0-正面，1-反面
+	 * @return
+	 * @throws Exception 
+	 */
+	public static String appSignAI4IDCard(Integer appIdAi, String nonce_str,
+			String image, String time_stamp, Integer card_type) throws Exception {
+		String plain_text = "app_id=" + URLEncoder.encode(appIdAi.toString(),"UTF-8") 
+				+"&card_type=" + URLEncoder.encode(card_type.toString(),"UTF-8") 
+				+"&image=" + URLEncoder.encode(image,"UTF-8") 
+				+"&nonce_str=" + URLEncoder.encode(nonce_str,"UTF-8") 
+				+"&time_stamp=" + URLEncoder.encode(time_stamp,"UTF-8");
+		 String plain_text_encode = plain_text+"&app_key="+TencentAPI.APP_KEY_AI;
+		 String sign = MD5.getMD5(plain_text_encode);
+		 return sign;
+	}
+	/**
+	 * 通用OCR识别SIGN计算方法
+	 * @param appIdAi 控制台获取
+	 * @param nonce_str 请求随机字符串，用于保证签名不可预测 
+	 * @param image 图片base64内容
+	 * @param time_stamp 
+	 * @return
+	 * @throws Exception 
+	 */
+	public static String appSignAI4GeneralOCR(Integer appIdAi, String image,
+			String nonce_str) throws Exception {
+	String time_stamp = System.currentTimeMillis()/1000+"";
+	String plain_text = "app_id=" + URLEncoder.encode(appIdAi.toString(),"UTF-8") + "&image=" + URLEncoder.encode(image,"UTF-8") +"&nonce_str=" + URLEncoder.encode(nonce_str,"UTF-8") + "&time_stamp=" + URLEncoder.encode(time_stamp,"UTF-8");
+    System.out.println(plain_text);
+    String plain_text_encode = plain_text+"&app_key="+TencentAPI.APP_KEY_AI;
+    System.out.println(plain_text_encode);
+    String sign = MD5.getMD5(plain_text_encode);
+    return sign;
+	}
 }
