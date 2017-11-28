@@ -273,6 +273,13 @@ public class HttpUtil {
         System.out.println("result:" + result);
         return result;
     }
+    /**
+     * NLP接口HTTP请求方法
+     * @param requestUrl
+     * @param params
+     * @return
+     * @throws Exception
+     */
     public static String postNLP(String requestUrl,String params) throws Exception {
     	String encoding = "";
     	if(requestUrl.contains("nlp")){
@@ -287,18 +294,15 @@ public class HttpUtil {
         connection.setRequestMethod("POST");
         // 设置通用的请求属性
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-//        connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("Connection", "Keep-Alive");
         connection.setUseCaches(false);
         connection.setDoOutput(true);
         connection.setDoInput(true);
-
         // 得到请求的输出流对象
         DataOutputStream out = new DataOutputStream(connection.getOutputStream());
         out.write(params.getBytes(encoding));
         out.flush();
         out.close();
-
         // 建立实际的连接
         connection.connect();
         // 获取所有响应头字段

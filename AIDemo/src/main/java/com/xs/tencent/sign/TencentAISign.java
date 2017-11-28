@@ -144,4 +144,23 @@ public class TencentAISign {
     String sign = MD5.getMD5(plain_text_encode);
     return sign;
 	}
+	/**
+	 * NLPWORDSEG-SIGN计算方法 注意text进行urlencode应使用GBK编码
+	 * @param appIdAi 控制台获取
+	 * @param nonce_str 请求随机字符串，用于保证签名不可预测 
+	 * @param text 文本信息
+	 * @param time_stamp 
+	 * @return 
+	 * @throws Exception 
+	 */
+	public static String appSignAI4NLPWordSeg(Integer appIdAi, String text,
+			String nonce_str) throws Exception {
+	String time_stamp = System.currentTimeMillis()/1000+"";
+	String plain_text = "app_id=" + URLEncoder.encode(appIdAi.toString(),"UTF-8") +"&nonce_str=" + URLEncoder.encode(nonce_str,"UTF-8") + "&text="+URLEncoder.encode(text,"GBK") +"&time_stamp=" + URLEncoder.encode(time_stamp,"UTF-8");
+    System.out.println(plain_text);
+    String plain_text_encode = plain_text+"&app_key="+TencentAPI.APP_KEY_AI;
+    System.out.println(plain_text_encode);
+    String sign = MD5.getMD5(plain_text_encode);
+    return sign;
+	}
 }
