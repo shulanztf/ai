@@ -1,9 +1,11 @@
 package com.xs.tencent.nlp;
 
 import java.net.URLEncoder;
+import java.util.HashMap;
 
 import com.xs.tencent.TencentAPI;
 import com.xs.tencent.sign.TencentAISign;
+import com.xs.tencent.sign.TencentAISignSort;
 import com.xs.util.baidu.HttpUtil;
 
 /**
@@ -19,7 +21,13 @@ public class NLPWordsegTest {
 		//随机字符串
 		String nonce_str = TencentAISign.getRandomString(10);
 		//计算SIGN
-	   String sign =TencentAISign.appSignAI4NLPWordSeg(TencentAPI.APP_ID_AI, text,nonce_str);
+//	   String sign =TencentAISign.appSignAI4NLPWordSeg(TencentAPI.APP_ID_AI, text,nonce_str);
+		HashMap<String, String> bodys = new HashMap<String, String>();
+		bodys.put("app_id","1106471787");
+		bodys.put("time_stamp",time_stamp);
+		bodys.put("nonce_str", nonce_str);
+		bodys.put("text", text);
+	   String sign = TencentAISignSort.getSignatureforNLP(bodys);	
 	   System.out.println(sign);
 	   //text 进行urlencode 使用GBK编码 
 	   String params ="app_id="+TencentAPI.APP_ID_AI.toString()+"&time_stamp="+time_stamp+"&nonce_str="+nonce_str+"&sign="+sign+"&text="+URLEncoder.encode(text,"GBK");
