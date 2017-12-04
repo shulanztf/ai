@@ -2,7 +2,7 @@ package com.xs.tencent;
 
 public class TencentAPI {
 	//自己的APPID
-	public static final Integer APP_ID_AI = 132465;
+	public static final Integer APP_ID_AI = 12346;
 	//自己的APPKEY
 	public static final String APP_KEY_AI = "123456";
 	/**
@@ -22,4 +22,6 @@ public class TencentAPI {
 	public static final String OCR_GENERAL = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_generalocr";
 	//基本文本分析-分词接口地址
 	public static final String NLP_WORDSEG = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_wordseg";
+	//语音合成-AI LAB
+	public static final String AAI_TTS = "https://api.ai.qq.com/fcgi-bin/aai/aai_tts";
 }
