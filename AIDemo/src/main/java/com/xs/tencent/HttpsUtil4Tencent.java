@@ -169,11 +169,11 @@ public class HttpsUtil4Tencent {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		}
-    	if(aaiTTS.getData().getFormat().equals("1")){
+    	if(aaiTTS.getData().getFormat()==1){
     		suffixnam = ".pcm";
-    	}else if (aaiTTS.getData().getFormat().equals("2")) {
+    	}else if (aaiTTS.getData().getFormat()==2) {
     		suffixnam= ".wav";
-		}else if (aaiTTS.getData().getFormat().equals("3")) {
+		}else if (aaiTTS.getData().getFormat()==3) {
 			suffixnam = ".mp3";
 		}else {
 			suffixnam = ".mp3";
