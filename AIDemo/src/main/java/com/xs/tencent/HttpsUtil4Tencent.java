@@ -1,9 +1,18 @@
 package com.xs.tencent;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +31,12 @@ import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.xs.tencent.aai.bean.AaiTTS;
+
+import sun.misc.BASE64Decoder;
  
 public class HttpsUtil4Tencent {
 	private static HttpClient wrapClient(String host) {
@@ -90,5 +105,95 @@ public class HttpsUtil4Tencent {
         }
         return httpClient.execute(request);
     }
- 
+	/**
+	 * get请求
+	 * @param requestUrl
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
+	  public static String getforVoice(String requestUrl,String params) throws Exception {
+	        String generalUrl = requestUrl;
+	        URL url = new URL(generalUrl);
+	        // 打开和URL之间的连接
+	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        connection.setRequestMethod("GET");
+	        // 设置通用的请求属性
+	        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+	        connection.setRequestProperty("Connection", "Keep-Alive");
+	        connection.setUseCaches(false);
+	        connection.setDoOutput(true);
+	        connection.setDoInput(true);
+	        // 得到请求的输出流对象
+	        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+	       out.writeBytes(params);
+	        out.flush();
+	        out.close();
+	        // 建立实际的连接
+	        connection.connect();
+	        // 获取所有响应头字段
+	        Map<String, List<String>> headers = connection.getHeaderFields();
+	        // 遍历所有的响应头字段
+	        for (String key : headers.keySet()) {
+	            System.out.println(key + "--->" + headers.get(key));
+	        }
+	        // 定义 BufferedReader输入流来读取URL的响应
+	        BufferedReader in = null;
+	        if (requestUrl.contains("nlp"))
+	            in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "GBK"));
+	        else
+	            in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+	        String result = "";
+	        String getLine;
+	        while ((getLine = in.readLine()) != null) {
+	            result += getLine;
+	        }
+	        in.close();
+	        System.out.println("result:" + result);
+	        return result;
+	    }
+	/**
+	 * 保存语音文件
+	 * @param result
+	 * @return
+	 */
+	public static String getMP3Voice(String result) {
+		String workspace = System.getProperty("user.home");
+    	String path = workspace+"/text2audio/";
+    	String suffixnam = ".mp3";
+    	AaiTTS aaiTTS = JSONObject.toJavaObject(JSON.parseObject(result), AaiTTS.class);
+    	try {
+			if (!(new File(path).isDirectory())) {
+				new File(path).mkdir();
+			}
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+    	if(aaiTTS.getData().getFormat().equals("1")){
+    		suffixnam = ".pcm";
+    	}else if (aaiTTS.getData().getFormat().equals("2")) {
+    		suffixnam= ".wav";
+		}else if (aaiTTS.getData().getFormat().equals("3")) {
+			suffixnam = ".mp3";
+		}else {
+			suffixnam = ".mp3";
+		}
+    	String filePath = path+"VOICE"+new Date().getTime()/1000+suffixnam;
+		if(result==null){
+			return null;
+		}
+		BASE64Decoder decoder = new BASE64Decoder();
+		try {
+			byte[] bytes = decoder.decodeBuffer(aaiTTS.getData().getSpeech());
+			FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+			fileOutputStream.write(bytes);
+			fileOutputStream.close();
+			System.out.println("请求结束"+new Date().getTime()/1000);
+		    System.out.println("MP3文件保存目录:" + filePath);
+			return filePath;
+		} catch (Exception e) {
+			System.out.println("请求出错"+e.getMessage());
+			return null;
+		}
+	}
 }
