@@ -1,9 +1,5 @@
 package com.xs.audio.tns;
-
-
-
 import java.net.URLEncoder;
-
 import com.xs.common.APIContants;
 import com.xs.util.baidu.HttpUtil;
 import com.xs.util.baidu.RandomStringGenerator;
@@ -15,10 +11,9 @@ import com.xs.util.baidu.RandomStringGenerator;
 public class Text2Audio {
 	public String TEXT2AUDIO_URL = "http://tsn.baidu.com/text2audio";
 	public static void main(String[] args) throws Exception {
-		String tex = "Welcome to china";
+		String tex = "开发者小帅你好";
 		Text2Audio audio = new Text2Audio();
 		audio.text2Audio(tex, APIContants.VOICE_TOKEN, "1", RandomStringGenerator.getRandomStringByLength(60));
-		
 	}
 	/**
 	 * 所有参数方法
@@ -35,7 +30,6 @@ public class Text2Audio {
 	 * @author 小帅丶
 	 * @throws Exception 
 	 * @date 2017-5-26
-	 *
 	 */
 	@SuppressWarnings("static-access")
 	public void text2Audio(String tex,String tok,String ctp,String cuid,String spd,String pit,String vol,String per) throws Exception{
@@ -45,7 +39,7 @@ public class Text2Audio {
 		System.out.println(params);
 		HttpUtil httpUtil = new HttpUtil();
 		String data = httpUtil.postVoice(TEXT2AUDIO_URL,params);
-		System.out.println("======\n"+data);
+		System.out.println("文件保存路径:"+data);
 	}
 	/**
 	 * 必填参数方法
@@ -58,7 +52,6 @@ public class Text2Audio {
 	 * @author 小帅丶
 	 * @throws Exception 
 	 * @date 2017-5-26
-	 *
 	 */
 	@SuppressWarnings("static-access")
 	public void text2Audio(String tex,String tok,String ctp,String cuid) throws Exception{
