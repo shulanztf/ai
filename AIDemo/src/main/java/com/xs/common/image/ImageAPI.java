@@ -28,4 +28,8 @@ public class ImageAPI {
 	 * 图像主体识别
 	 */
 	public static String OBJECT_DETECT_API = "https://aip.baidubce.com/rest/2.0/image-classify/v1/object_detect";
+	/**
+	 * 食材识别
+	 */
+	public static String INGREDIENT_API="https://aip.baidubce.com/rest/2.0/image-classify/v1/classify/ingredient";
 }
