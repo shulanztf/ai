@@ -32,4 +32,8 @@ public class ImageAPI {
 	 * 食材识别
 	 */
 	public static String INGREDIENT_API="https://aip.baidubce.com/rest/2.0/image-classify/v1/classify/ingredient";
+	/**
+	 * 通用物体&场景识别
+	 */
+	public static String SCENERANDOBJECT_API="https://aip.baidubce.com/rest/2.0/image-classify/v2/general";
 }
