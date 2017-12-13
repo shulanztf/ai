@@ -17,7 +17,7 @@ public class IngredientDemo {
 		//返回字符串
 		//getDishBean("图片本地路径", "用户自己的token");
 		//返回java对象
-		Ingredient ingredient  =getDishBean("G:/onion.jpg", "用户自己的token");
+		Ingredient ingredient  =getIngredientBean("G:/onion.jpg", "用户自己的token");
 		System.out.println(ingredient.getResult().get(0).getName());
 	}
 	/**
@@ -27,7 +27,7 @@ public class IngredientDemo {
 	 * @return 字符串
 	 * @throws Exception
 	 */
-	public static String getDishResult(String imagePath,String accessToken) throws Exception{
+	public static String getIngredientResult(String imagePath,String accessToken) throws Exception{
 		byte[] imgData = FileUtil.readFileByBytes(imagePath);
         String imgStr = Base64Util.encode(imgData);
 		String param = "image=" + URLEncoder.encode(imgStr,"UTF-8") + "&top_num=5";
@@ -43,7 +43,7 @@ public class IngredientDemo {
 	 * @return Ingredient对象
 	 * @throws Exception
 	 */
-	public static Ingredient getDishBean(String imagePath,String accessToken) throws Exception{
+	public static Ingredient getIngredientBean(String imagePath,String accessToken) throws Exception{
 		byte[] imgData = FileUtil.readFileByBytes(imagePath);
         String imgStr = Base64Util.encode(imgData);
 		String param = "image=" + URLEncoder.encode(imgStr,"UTF-8") + "&top_num=5";
