@@ -11,7 +11,7 @@ import com.xs.util.baidu.HttpUtil;
 /**
  * 语音识别-echo版示例代码
  * @author 小帅丶
- *
+ * 如果文件是MP3格式  转PCM文件请参考 com/xs/audio/tns/MP3ConvertPCM.java
  */
 public class AaiAsrTest {
 	public static void main(String[] args) throws Exception {
