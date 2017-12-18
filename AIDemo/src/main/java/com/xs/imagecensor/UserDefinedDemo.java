@@ -3,7 +3,6 @@ package com.xs.imagecensor;
 import java.net.URLEncoder;
 
 import com.alibaba.fastjson.JSON;
-import com.xs.common.image.ImageAPI;
 import com.xs.pojo.imagecensor.UserDefinedBean;
 import com.xs.util.baidu.Base64Util;
 import com.xs.util.baidu.FileUtil;
