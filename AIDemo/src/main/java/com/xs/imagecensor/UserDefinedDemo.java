@@ -17,10 +17,10 @@ import com.xs.util.baidu.HttpUtil;
 public class UserDefinedDemo {
 	public static void main(String[] args) throws Exception {
 		//返回字符串
-		String result = getUserDefinedResult("G:/xjp.jpg","24.35f99464e871e04140384bb32e9026ba.2592000.1516161570.282335-10171115");
+		String result = getUserDefinedResult("G:/xjp.jpg","自己的token");
 		System.out.println(result);
 		//返回java对象
-		UserDefinedBean userDefinedBean = getUserDefinedBean("G:/xjp.jpg","24.35f99464e871e04140384bb32e9026ba.2592000.1516161570.282335-10171115");
+		UserDefinedBean userDefinedBean = getUserDefinedBean("G:/xjp.jpg","自己的token");
         System.out.println(userDefinedBean.getData().get(0).getMsg());
         System.out.println(userDefinedBean.getData().get(0).getStars().get(0).getName());
 	}
