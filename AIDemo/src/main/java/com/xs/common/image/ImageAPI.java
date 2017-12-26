@@ -17,6 +17,14 @@ public class ImageAPI {
 	 */
 	public static String LOGO_API = "https://aip.baidubce.com/rest/2.0/image-classify/v2/logo";
 	/**
+	 * LOGO识别-入库子库图片
+	 */
+	public static String LOGO_API_ADD = "https://aip.baidubce.com/rest/2.0/realtime_search/v1/logo/add";
+	/**
+	 * LOGO识别-删除子库图片
+	 */
+	public static String LOGO_API_DELETE = "https://aip.baidubce.com/rest/2.0/realtime_search/v1/logo/delete";
+	/**
 	 * 动物识别
 	 */
 	public static String ANIMAL_API = "https://aip.baidubce.com/rest/2.0/image-classify/v1/animal";
