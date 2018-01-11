@@ -34,6 +34,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.xs.tencent.aai.bean.AaiTTA;
 import com.xs.tencent.aai.bean.AaiTTS;
 
 import sun.misc.BASE64Decoder;
@@ -185,6 +186,41 @@ public class HttpsUtil4Tencent {
 		BASE64Decoder decoder = new BASE64Decoder();
 		try {
 			byte[] bytes = decoder.decodeBuffer(aaiTTS.getData().getSpeech());
+			FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+			fileOutputStream.write(bytes);
+			fileOutputStream.close();
+			System.out.println("请求结束"+new Date().getTime()/1000);
+		    System.out.println("MP3文件保存目录:" + filePath);
+			return filePath;
+		} catch (Exception e) {
+			System.out.println("请求出错"+e.getMessage());
+			return null;
+		}
+	}
+	/**
+	 * 保存语音文件
+	 * @param result
+	 * @return
+	 */
+	public static String getMP3VoiceYouTu(String result) {
+		String workspace = System.getProperty("user.home");
+    	String path = workspace+"/text2audio/";
+    	String suffixnam = ".mp3";
+    	AaiTTA aaiTTA = JSONObject.toJavaObject(JSON.parseObject(result), AaiTTA.class);
+    	try {
+			if (!(new File(path).isDirectory())) {
+				new File(path).mkdir();
+			}
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+    	String filePath = path+"VOICE"+new Date().getTime()/1000+suffixnam;
+		if(result==null){
+			return null;
+		}
+		BASE64Decoder decoder = new BASE64Decoder();
+		try {
+			byte[] bytes = decoder.decodeBuffer(aaiTTA.getData().getVoice());
 			FileOutputStream fileOutputStream = new FileOutputStream(filePath);
 			fileOutputStream.write(bytes);
 			fileOutputStream.close();
