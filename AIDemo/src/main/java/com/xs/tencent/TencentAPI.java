@@ -2,9 +2,9 @@ package com.xs.tencent;
 
 public class TencentAPI {
 	//自己的APPID
-	public static final Integer APP_ID_AI = 123456;
+	public static final Integer APP_ID_AI = 1106471787;
 	//自己的APPKEY
-	public static final String APP_KEY_AI = "自己key";
+	public static final String APP_KEY_AI = "tWCXFJfrSVEmu0IB";
 	/**
 	 * 人脸检测接口地址
 	 */
@@ -24,10 +24,18 @@ public class TencentAPI {
 	public static final String NLP_WORDSEG = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_wordseg";
 	//语音合成-AI LAB
 	public static final String AAI_TTS = "https://api.ai.qq.com/fcgi-bin/aai/aai_tts";
+	//语音合成-优图
+	public static final String AAI_TTA = "https://api.ai.qq.com/fcgi-bin/aai/aai_tta";
 	//语音识别-echo版
 	public static final String AAI_ASR = "https://api.ai.qq.com/fcgi-bin/aai/aai_asr";
+	//长语音识别	
+	public static final String AAI_WXASRLONG = "https://api.ai.qq.com/fcgi-bin/aai/aai_wxasrlong";
+	//	语音识别-流式版(WeChat AI) 	对音频进行流式识别，轻松实现边录音边识别 	
+	public static final String AAI_WXASRS = "https://api.ai.qq.com/fcgi-bin/aai/aai_wxasrs";
 	//银行卡识别
 	public static final String OCR_BANK = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_creditcardocr";
 	//行驶证驾驶证OCR识别
 	public static final String OCR_DRIVERLICENSEOCR="https://api.ai.qq.com/fcgi-bin/ocr/ocr_driverlicenseocr";
+	//智能鉴黄  识别一个图像是否为色情图像
+	public static final String VISION_PORN = "https://api.ai.qq.com/fcgi-bin/vision/vision_porn";
 }
