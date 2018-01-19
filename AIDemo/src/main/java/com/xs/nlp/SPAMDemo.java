@@ -20,18 +20,18 @@ public class SPAMDemo {
 	public static void main(String[] args) throws Exception {
 		String content = "我的QQ是123456789";
 		//输出字符串内容
-//		String result = getSpamResult("百度是一家互联网公司", APIContants.NLP_TOKEN);
-//		System.out.println(result);
-		SpamBean SpamBean = getSpamBean(content, "24.5d75ff2ff305fc80c3c8f86bf40ae210.2592000.1518934707.282335-9748117");
-		int spam = SpamBean.getResult().getSpam();
-		//0表示非违禁，1表示违禁，2表示建议人工复审
-		if(spam==0){
-			System.out.println(content+"   文本内容审核通过");
-		}else if(spam==1){
-			System.out.println(content+"   文本内容未通过属于"+getLableMsg(SpamBean.getResult().getLabels().get(0)));
-		}else{
-			System.out.println(content+"   文本内容建议人工审核");
-		}
+		String result = getSpamResult(content,"自己的token");
+		System.out.println(result);
+//		SpamBean SpamBean = getSpamBean(content, "自己的token");
+//		int spam = SpamBean.getResult().getSpam();
+//		//0表示非违禁，1表示违禁，2表示建议人工复审
+//		if(spam==0){
+//			System.out.println(content+"   文本内容审核通过");
+//		}else if(spam==1){
+//			System.out.println(content+"   文本内容未通过属于"+getLableMsg(SpamBean.getResult().getLabels().get(0)));
+//		}else{
+//			System.out.println(content+"   文本内容建议人工审核");
+//		}
 
 	}
 	/**
