@@ -22,6 +22,8 @@ public class TencentAPI {
 	public static final String OCR_GENERAL = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_generalocr";
 	//基本文本分析-分词接口地址
 	public static final String NLP_WORDSEG = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_wordseg";
+	//情感分析识别 	
+	public static final String NLP_TEXTPOLAR = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textpolar";
 	//语音合成-AI LAB
 	public static final String AAI_TTS = "https://api.ai.qq.com/fcgi-bin/aai/aai_tts";
 	//语音合成-优图
