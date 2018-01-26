@@ -80,7 +80,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-
+	<dependency>
+	    <groupId>com.baidu.aip</groupId>
+	    <artifactId>java-sdk</artifactId>
+	    <version>4.0.0</version>
+	</dependency>
 		<!-- servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -255,6 +259,11 @@
 	    <artifactId>bcpkix-jdk15on</artifactId>
 	    <version>1.50</version>
 	</dependency>
+	<dependency>
+    <groupId>com.googlecode.soundlibs</groupId>
+    <artifactId>mp3spi</artifactId>
+    <version>1.9.5.4</version>
+</dependency>
 	</dependencies>
 	<build>
 		<plugins>
