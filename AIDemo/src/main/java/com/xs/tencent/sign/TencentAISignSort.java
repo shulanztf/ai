@@ -35,11 +35,10 @@ public class TencentAISignSort {
 	                baseString.append(param.getKey().trim()).append("=").append(URLEncoder.encode(param.getValue().trim(),"UTF-8")).append("&");
 	            }
 	        }
-	        System.err.println("未拼接APPKEY的参数："+baseString.toString());
 	        if(baseString.length() > 0 ) {
 	            baseString.deleteCharAt(baseString.length()-1).append("&app_key="+TencentAPI.APP_KEY_AI);
 	        }
-	        System.err.println("拼接APPKEY后的参数："+baseString.toString());
+	        System.out.println("加密的参数字符串："+baseString.toString());
 	        // 使用MD5对待签名串求签
 	        try {
 	        	String sign = MD5.getMD5(baseString.toString());
@@ -68,7 +67,6 @@ public class TencentAISignSort {
 	            		baseString.append(param.getKey().trim()).append("=").append(URLEncoder.encode(param.getValue().trim(),"GBK")).append("&");
 	            	}else{
 	            		baseString.append(param.getKey().trim()).append("=").append(URLEncoder.encode(param.getValue().trim(),"UTF-8")).append("&");
-	            		
 	            	}
 	            }
 	        }
@@ -98,6 +96,28 @@ public class TencentAISignSort {
         for (Map.Entry<String, String> param : entrys) {
             //sign参数 和 空值参数 不加入算法
            baseString.append(param.getKey().trim()).append("=").append(URLEncoder.encode(param.getValue().trim(),"UTF-8")).append("&");
+        }
+       return baseString.toString();
+    }
+	/**
+	 * 获取拼接的参数forNLP
+	 * @param params
+	 * @return
+	 * @throws IOException
+	 */
+	public static String getParamsforNLP(HashMap<String,String> params) throws IOException {
+		//  先将参数以其参数名的字典序升序进行排序
+        Map<String, String> sortedParams = new TreeMap<>(params);
+        Set<Map.Entry<String, String>> entrys = sortedParams.entrySet();
+        // 遍历排序后的字典，将所有参数按"key=value"格式拼接在一起
+        StringBuilder baseString = new StringBuilder();
+        for (Map.Entry<String, String> param : entrys) {
+            //sign参数 和 空值参数 不加入算法
+        	if(param.getKey().equals("text")){
+        		baseString.append(param.getKey().trim()).append("=").append(URLEncoder.encode(param.getValue().trim(),"GBK")).append("&");
+        	}else{
+        		baseString.append(param.getKey().trim()).append("=").append(URLEncoder.encode(param.getValue().trim(),"UTF-8")).append("&");
+        	}
         }
        return baseString.toString();
     }
