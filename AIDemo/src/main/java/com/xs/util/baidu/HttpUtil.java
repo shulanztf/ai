@@ -282,22 +282,15 @@ public class HttpUtil {
         connection.setRequestMethod("POST");
         // 设置通用的请求属性
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-//        connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("Connection", "Keep-Alive");
         connection.setUseCaches(false);
         connection.setDoOutput(true);
         connection.setDoInput(true);
-
         // 得到请求的输出流对象
         DataOutputStream out = new DataOutputStream(connection.getOutputStream());
-       out.writeBytes(params);
+        out.writeBytes(params);
         out.flush();
         out.close();
-//        OutputStream os= connection.getOutputStream();    
-//        os.write(params.getBytes("GBK"));//传入参数
-//        os.flush();
-//        os.close();
-
         // 建立实际的连接
         connection.connect();
         // 获取所有响应头字段
@@ -309,7 +302,7 @@ public class HttpUtil {
         // 定义 BufferedReader输入流来读取URL的响应
         BufferedReader in = null;
         if (requestUrl.contains("nlp"))
-            in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "GBK"));
+            in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
         else
             in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
         String result = "";
@@ -361,7 +354,7 @@ public class HttpUtil {
         }
         // 定义 BufferedReader输入流来读取URL的响应
         BufferedReader in = null;
-        if (requestUrl.contains("nlp"))
+        if (requestUrl.contains("nlp_wordseg")||requestUrl.contains("nlp_wordpos")||requestUrl.contains("nlp_wordner")||requestUrl.contains("nlp_wordsyn"))
             in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "GBK"));
         else
             in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
