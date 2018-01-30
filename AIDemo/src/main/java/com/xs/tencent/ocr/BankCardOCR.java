@@ -2,19 +2,12 @@ package com.xs.tencent.ocr;
 
 import java.util.HashMap;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.util.EntityUtils;
-
-import com.xs.tencent.HttpsUtil4Tencent;
 import com.xs.tencent.TencentAPI;
 import com.xs.tencent.sign.Base64Util;
 import com.xs.tencent.sign.TencentAISign;
 import com.xs.tencent.sign.TencentAISignSort;
 import com.xs.util.baidu.FileUtil;
 import com.xs.util.baidu.HttpUtil;
-
-
-
 /**
  * @author 小帅丶
  * @类名称  BankCardOCR
