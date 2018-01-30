@@ -1,13 +1,16 @@
 package com.xs.tencent.nlp;
 
-import java.net.URLEncoder;
 import java.util.HashMap;
 
 import com.xs.tencent.TencentAPI;
 import com.xs.tencent.sign.TencentAISign;
 import com.xs.tencent.sign.TencentAISignSort;
 import com.xs.util.baidu.HttpUtil;
-
+/**
+ * 腾讯AI 情感分析识别 接口示例代码
+ * @author 小帅丶
+ * @date 2018年
+ */
 public class NLPTextPolarDemo {
 	public static void main(String[] args) throws Exception {
 		//时间戳
@@ -17,12 +20,11 @@ public class NLPTextPolarDemo {
 		String nonce_str = TencentAISign.getRandomString(10);
 		//计算SIGN
 		HashMap<String, String> bodys = new HashMap<String, String>();
-		bodys.put("app_id","1106471787");
+		bodys.put("app_id",TencentAPI.APP_ID_AI.toString());
 		bodys.put("time_stamp",time_stamp);
 		bodys.put("nonce_str", nonce_str);
 		bodys.put("text", text);
 		String sign = TencentAISignSort.getSignature(bodys);
-		System.out.println("sign==="+sign);
 		bodys.put("sign", sign);
 		String params = TencentAISignSort.getParams(bodys);
 		System.out.println(params);

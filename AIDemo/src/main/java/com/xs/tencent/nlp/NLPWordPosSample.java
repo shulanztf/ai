@@ -6,13 +6,13 @@ import com.xs.tencent.TencentAPI;
 import com.xs.tencent.sign.TencentAISign;
 import com.xs.tencent.sign.TencentAISignSort;
 import com.xs.util.baidu.HttpUtil;
-
 /**
- * 腾讯AI 基本文本分析-分词接口示例代码
+ * 腾讯AI 词性标注-分词接口示例代码
  * @author 小帅丶
- * @date 2017年11月28日
+ * @date 2018年1月30日
  */
-public class NLPWordsegTest {
+public class NLPWordPosSample {
+	//TencentAPI 修改自己的APPID APPKEY
 	public static void main(String[] args) throws Exception {
 		//时间戳
 		String time_stamp = System.currentTimeMillis()/1000+"";
@@ -30,7 +30,7 @@ public class NLPWordsegTest {
 	   //text 进行urlencode 使用GBK编码 
 		String params = TencentAISignSort.getParamsforNLP(bodys);
 		System.out.println(params);
-		String result = HttpUtil.postNLP(TencentAPI.NLP_WORDSEG, params);
+		String result = HttpUtil.postNLP(TencentAPI.NLP_WORDPOS, params);
 	    System.out.println(result);
 	}
 }
