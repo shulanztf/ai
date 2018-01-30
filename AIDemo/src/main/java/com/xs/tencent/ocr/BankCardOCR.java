@@ -11,6 +11,7 @@ import com.xs.tencent.sign.Base64Util;
 import com.xs.tencent.sign.TencentAISign;
 import com.xs.tencent.sign.TencentAISignSort;
 import com.xs.util.baidu.FileUtil;
+import com.xs.util.baidu.HttpUtil;
 
 
 
@@ -33,14 +34,17 @@ public class BankCardOCR {
 		HashMap<String, String> headers = new HashMap<String, String>();
 		HashMap<String, String> bodys = new HashMap<String, String>();
 		headers.put("Content-Type", "application/x-www-form-urlencoded");
-		bodys.put("app_id","自己的appid");
+		bodys.put("app_id",TencentAPI.APP_ID_AI.toString());
 		bodys.put("time_stamp",time_stamp);
 		bodys.put("nonce_str", nonce_str);
 		bodys.put("image", image);
 		//计算SIGN
 		String sign = TencentAISignSort.getSignature(bodys);
 		bodys.put("sign", sign);
-		HttpResponse responseBD = HttpsUtil4Tencent.doPostTencentAI(TencentAPI.OCR_BANK,headers,bodys);
-		System.out.println(EntityUtils.toString(responseBD.getEntity()));
+		String params = TencentAISignSort.getParams(bodys);
+		String result = HttpUtil.post(TencentAPI.OCR_BANK, params);
+//		HttpResponse responseBD = HttpsUtil4Tencent.doPostTencentAI(TencentAPI.OCR_BANK,headers,bodys);
+//		System.out.println(EntityUtils.toString(responseBD.getEntity()));
+		System.out.println(result);
 	}
 }
