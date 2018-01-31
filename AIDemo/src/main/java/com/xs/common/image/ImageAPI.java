@@ -44,4 +44,8 @@ public class ImageAPI {
 	 * 通用物体&场景识别
 	 */
 	public static String SCENERANDOBJECT_API="https://aip.baidubce.com/rest/2.0/image-classify/v2/general";
+	/**
+	 * 人体关键点识别
+	 */
+	public static String BODYANALYSIS_API="https://aip.baidubce.com/rest/2.0/image‐classify/v1/body_analysis";
 }
