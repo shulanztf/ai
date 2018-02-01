@@ -17,17 +17,19 @@ public class AAIWxAsrLong {
 		//时间戳
 		String time_stamp = System.currentTimeMillis()/1000+"";
 		//语音的base64数据
-		String voicebase64 =Base64Util.encode(FileUtil.readFileByBytes("C:/Users/Administrator/text2audio/VOICE1513237078.pcm"));
+		String voicebase64 =Base64Util.encode(FileUtil.readFileByBytes("C:/Users/Administrator/Documents/Tencent Files/783021975/FileRecv/vedio_test_20180131034838.wav"));
 		//随机字符串
 		String nonce_str = TencentAISign.getRandomString(10);
 		HashMap<String, String> bodys = new HashMap<String, String>();
-		bodys.put("app_id","1106471787");
+		bodys.put("app_id",TencentAPI.APP_ID_AI.toString());
 		bodys.put("time_stamp",time_stamp);
 		bodys.put("nonce_str", nonce_str);
 		//格式自行参考文档说明
-		bodys.put("format", "1");
+		bodys.put("format", "2");
 		//回调地址 最好是外网访问的哦
 		bodys.put("callback_url","http://zxshuai.imwork.net/PaymentManager/txnotify");
+		//语音文件2种形式  要么是语音文件的下载地址(最大30mb，15min之内 ) 要么是本地音频文件的base64 
+//		bodys.put("speech_url", "http://qidingaudiotoaudio.nos-eastchina1.126.net/test/f349k16.pcm");
 		bodys.put("speech", voicebase64);
 		//计算SIGN
 		String sign = TencentAISignSort.getSignature(bodys);
