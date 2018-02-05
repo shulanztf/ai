@@ -2,9 +2,9 @@ package com.xs.tencent;
 
 public class TencentAPI {
 	//自己的APPID
-	public static final Integer APP_ID_AI = 0;
+	public static final Integer APP_ID_AI = 123456;
 	//自己的APPKEY
-	public static final String APP_KEY_AI = "";
+	public static final String APP_KEY_AI = "appkey";
 	/**
 	 * 人脸检测接口地址
 	 */
@@ -21,6 +21,10 @@ public class TencentAPI {
 	 * 人脸融合
 	 */
 	public static final String FACE_MERGE = "https://api.ai.qq.com/fcgi-bin/ptu/ptu_facemerge";
+	/**
+	 * 颜龄检测-给定图片，对原图进行人脸颜龄检测处理
+	 */
+	public static final String PTU_FACEAGE = "https://api.ai.qq.com/fcgi-bin/ptu/ptu_faceage";
 	//身份证识别接口地址
 	public static final String OCR_IDCARD = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_idcardocr";
 	public static final String OCR_GENERAL = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_generalocr";
@@ -34,6 +38,8 @@ public class TencentAPI {
 	public static final String NLP_WORDSYN = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_wordsyn";
 	//情感分析识别 	
 	public static final String NLP_TEXTPOLAR = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textpolar";
+	//基础闲聊
+	public static final String NLP_TEXTCHAT = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat";
 	//语音合成-AI LAB
 	public static final String AAI_TTS = "https://api.ai.qq.com/fcgi-bin/aai/aai_tts";
 	//语音合成-优图
@@ -44,6 +50,8 @@ public class TencentAPI {
 	public static final String AAI_WXASRLONG = "https://api.ai.qq.com/fcgi-bin/aai/aai_wxasrlong";
 	//语音识别-流式版(WeChat AI) 	对音频进行流式识别，轻松实现边录音边识别 	
 	public static final String AAI_WXASRS = "https://api.ai.qq.com/fcgi-bin/aai/aai_wxasrs";
+	//语音识别-流式版（AI Lab） 对音频进行流式识别，轻松实现边录音边识别 	
+	public static final String AAI_ASRS = "https://api.ai.qq.com/fcgi-bin/aai/aai_asrs";
 	//银行卡识别
 	public static final String OCR_BANK = "https://api.ai.qq.com/fcgi-bin/ocr/ocr_creditcardocr";
 	//行驶证驾驶证OCR识别
