@@ -44,6 +44,8 @@ public class TencentAPI {
 	public static final String NLP_TEXTTRANS = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_texttrans";
 	//文本翻译（翻译君）
 	public static final String NLP_TEXTTRANSLATE = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_texttranslate";
+	//语种识别
+	public static final String NLP_TEXTDETECT = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textdetect";
 	//语音合成-AI LAB
 	public static final String AAI_TTS = "https://api.ai.qq.com/fcgi-bin/aai/aai_tts";
 	//语音合成-优图
