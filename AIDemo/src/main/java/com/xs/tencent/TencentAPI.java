@@ -2,9 +2,9 @@ package com.xs.tencent;
 
 public class TencentAPI {
 	//自己的APPID
-	public static final Integer APP_ID_AI = 123456;
+	public static final Integer APP_ID_AI = 1;
 	//自己的APPKEY
-	public static final String APP_KEY_AI = "appkey";
+	public static final String APP_KEY_AI = "1";
 	/**
 	 * 人脸检测接口地址
 	 */
@@ -40,6 +40,10 @@ public class TencentAPI {
 	public static final String NLP_TEXTPOLAR = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textpolar";
 	//基础闲聊
 	public static final String NLP_TEXTCHAT = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat";
+	//文本翻译（AI Lab）
+	public static final String NLP_TEXTTRANS = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_texttrans";
+	//文本翻译（翻译君）
+	public static final String NLP_TEXTTRANSLATE = "https://api.ai.qq.com/fcgi-bin/nlp/nlp_texttranslate";
 	//语音合成-AI LAB
 	public static final String AAI_TTS = "https://api.ai.qq.com/fcgi-bin/aai/aai_tts";
 	//语音合成-优图
