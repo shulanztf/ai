@@ -2,13 +2,18 @@ package com.xs.tencent;
 
 public class TencentAPI {
 	//自己的APPID
-	public static final Integer APP_ID_AI = 1;
+	public static final Integer APP_ID_AI = 123456;
 	//自己的APPKEY
-	public static final String APP_KEY_AI = "1";
+	public static final String APP_KEY_AI = "123456";
 	/**
 	 * 人脸检测接口地址
 	 */
 	public static final String FACE_DETECT = "https://api.ai.qq.com/fcgi-bin/face/face_detectface";
+	/**
+	 * 多人脸检测 	
+	 * 识别上传图像上面的人脸位置，支持多人脸识别。
+	 */
+	public static final String FACE_DETECTMULTI = "https://api.ai.qq.com/fcgi-bin/face/face_detectmultiface";
 	/**
 	 * 人脸美妆接口地址
 	 */
