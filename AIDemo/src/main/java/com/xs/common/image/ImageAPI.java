@@ -48,4 +48,8 @@ public class ImageAPI {
 	 * 人体关键点识别
 	 */
 	public static String BODYANALYSIS_API="https://aip.baidubce.com/rest/2.0/image‐classify/v1/body_analysis";
+	/**
+	 * 人体属性识别
+	 */
+	public static String BODYATTR_API="https://aip.baidubce.com/rest/2.0/image-classify/v1/body_attr";
 }
