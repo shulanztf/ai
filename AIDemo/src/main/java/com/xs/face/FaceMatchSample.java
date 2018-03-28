@@ -8,7 +8,7 @@ import com.xs.util.baidu.HttpUtil;
 /**
  * 人脸对比示例代码
  * @author 小帅丶
- *
+ * Java-API
  */
 public class FaceMatchSample {
 	//接口地址
