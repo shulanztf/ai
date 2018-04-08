@@ -8,7 +8,11 @@ import com.xs.tencent.sign.TencentAISign;
 import com.xs.tencent.sign.TencentAISignSort;
 import com.xs.util.baidu.FileUtil;
 import com.xs.util.baidu.HttpUtil;
-
+/**
+ * 营业执照示例代码
+ * @author 小帅丶
+ *
+ */
 public class BizLicenseSample {
 	public static void main(String[] args) throws Exception {
 		//时间戳
