@@ -18,7 +18,7 @@ public class VisionObjectSample {
 		//时间戳
 		String time_stamp = System.currentTimeMillis()/1000+"";
 		//图片的二进制数组数据
-		byte [] imageData = FileUtil.readFileByBytes("C:/Users/Administrator/Desktop/obejct.jpg");
+		byte [] imageData = FileUtil.readFileByBytes("G:/onion.jpg");
 		//图片的base64编码数据
 		String image = Base64Util.encode(imageData);
 		//随机字符串
@@ -27,10 +27,12 @@ public class VisionObjectSample {
 		bodys.put("app_id",TencentAPI.APP_ID_AI.toString());
 		bodys.put("time_stamp",time_stamp);
 		bodys.put("nonce_str", nonce_str);
+		bodys.put("format", "1");
 		/**
 		 * 图片格式，1 JPG格式（image/jpeg） 
 		 * bodys.put("format", "1");
 		 * 亲测发现这个参数并不是必须填写参数 如果填写则会16388鉴权错误
+		 * 2018年4月23日 更新 如不填写提示4096错误 接口服务已经更新为必填参数
 		 * **/
 		//topk 返回结果个数（已按置信度倒排） 1-5
 		bodys.put("topk", "1");
